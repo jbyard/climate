@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+#cards {
+	display:           flex;
+	flex-flow:         row nowrap;
+	justify-content:   space-between;
+}
+
+.card {
+	display:            flex;
+	flex-flow:          column nowrap;
+	padding:            .3em;
+}
+
+.big {
+	font-weight:   bold;
+	font-size:     2.7em;
+}
+
+.small {
+	font-size: .7em;
+}
+
+.dot {
+	border-radius:   3px;
+	width:           100%;
+	height:          7px;
+}
