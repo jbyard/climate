@@ -12,7 +12,7 @@ BEGIN
 
 	/* Allow for partial, but not entirely empty datapoints */
 	IF (NOT ($1 ? 'temp') AND NOT ($1 ? 'humidity')) THEN
-		RAISE EXCEPTION 'Requires temperature or humidity.';
+		RAISE EXCEPTION 'Requires temp or humidity.';
 	END IF;
 	
 	INSERT INTO climate.probes (probe_id)
