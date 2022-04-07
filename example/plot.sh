@@ -22,6 +22,11 @@ END; \$\$
 "
 
 # Plot the report
+XLABEL="set format x '%H:%M'"
+if [ "$INTERVAL" = 'hour' ]; then
+	XLABEL="set format x '%m/%d'; set xtics 60. * 60. * 24."
+fi
+
 read -r -d '' PLOTCMD <<HERE
 	set datafile separator ',';
 	set output '$PNG';
@@ -29,7 +34,7 @@ read -r -d '' PLOTCMD <<HERE
 	set key textcolor rgb '#46444D';
 	set title '$DIMENSION - last $RANGE';
 	set key below autotitle columnhead;
-	set xdata time; set timefmt '%Y-%m-%d %H:%M:%S'; set format x '%H:%M';
+	set xdata time; set timefmt '%Y-%m-%d %H:%M:%S'; $XLABEL;
 	plot
 HERE
 
