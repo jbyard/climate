@@ -19,7 +19,7 @@ BEGIN
 	VALUES (macaddr_in(($1->>'probe')::cstring))
 	ON CONFLICT ON CONSTRAINT probes_pkey DO NOTHING;
 
-	/* Insert into the timeseries data table, creating a partition if necessary. */
+	/* Insert into the data table, creating a partition if necessary. */
 	need_to_part := true;
 	LOOP
 		BEGIN
