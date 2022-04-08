@@ -4,10 +4,10 @@ CREATE OR REPLACE VIEW climate.latest AS
 SELECT DISTINCT ON (probe_id)
 	label                     AS probe,
 	color                     AS color,
-	floor(temperature)        AS temperature,
-	floor(humidity)           AS humidity,
-	MIN(floor(temperature)) OVER(PARTITION BY probe_id)  AS low_temp,
-	MAX(floor(temperature)) OVER(PARTITION BY probe_id)  AS high_temp,
+	ROUND(temperature)        AS temperature,
+	ROUND(humidity)           AS humidity,
+	MIN(ROUND(temperature)) OVER(PARTITION BY probe_id)  AS low_temp,
+	MAX(ROUND(temperature)) OVER(PARTITION BY probe_id)  AS high_temp,
  CASE WHEN NOW() - ts < '3 seconds'::interval THEN 'just now'
  WHEN NOW() - ts < '1 minute'::interval THEN
 	EXTRACT(second from date_trunc('second', NOW() - ts))::TEXT || ' seconds ago'
